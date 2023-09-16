@@ -51,7 +51,7 @@ class TakeProfitLong:
         return 0.0, 0.0
 
     def calculate_risk_reward(self, possible_loss, position_size, average_entry):
-        print("Long Order - Calculate Take Profit - calculate_risk_reward")
+        #TODO logging -> print("Long Order - Calculate Take Profit - calculate_risk_reward")
         profit = possible_loss * self.risk_reward
         self.tp_price = (profit + position_size * self.tp_fee_pct + position_size) * (
             average_entry / (position_size - position_size * self.tp_fee_pct)
@@ -84,7 +84,7 @@ class TakeProfitLong:
             )
 
     def check_take_profit_hit_provided(self, exit_signal, **vargs):
-        print("Long Order - Take Profit Checker - check_take_profit_hit_provided")
+        #TODO logging -> print("Long Order - Take Profit Checker - check_take_profit_hit_provided")
         if exit_signal:
             print("Long Order - Take Profit Checker - exit_signal=True")
         pass

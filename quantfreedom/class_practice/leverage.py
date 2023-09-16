@@ -75,7 +75,7 @@ class LeverageLong:
         og_cash_used: float,
         og_cash_borrowed: float,
     ):
-        print("Long Order - Calculate Leverage - __calc_liq_price")
+        # TODO logging -> print("Long Order - Calculate Leverage - __calc_liq_price")
 
         # Getting Order Cost
         # https://www.bybithelp.com/HelpCenterKnowledge/bybitHC_Article?id=000001064&language=en_US
@@ -146,7 +146,7 @@ class LeverageLong:
         available_balance: float,
         cash_borrowed: float,
     ):
-        print("Long Order - Calculate Leverage - calculate_dynamic_leverage")
+        # TODO logging -> print("Long Order - Calculate Leverage - calculate_dynamic_leverage")
         self.leverage = -average_entry / (
             (sl_price - sl_price * 0.001)
             - average_entry

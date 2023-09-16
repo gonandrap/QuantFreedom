@@ -213,7 +213,7 @@ def backtest_df_only_nb(
                         except MoveStopLoss as e:
                             print(f"Decrease Position -> {repr(e.order_status)}")
 
-                    print("\nChecking Next Bar for entry or exit")
+                    #print("\nChecking Next Bar for entry or exit")
 
                 # Checking if gains
             #     gains_pct = (

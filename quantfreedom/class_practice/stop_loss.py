@@ -118,17 +118,17 @@ class StopLossLong:
         return symbol_price_data[lookback:bar_index, 0].min()
 
     def __get_candle_body_price_high(self, lookback, bar_index, symbol_price_data):
-        print("Long Order - Candle Body Getter - __get_candle_body_price_high")
+        # TODO logging -> print("Long Order - Candle Body Getter - __get_candle_body_price_high")
         # column 2 is the low because it is open high low close
         return symbol_price_data[lookback:bar_index, 1].min()
 
     def __get_candle_body_price_low(self, lookback, bar_index, symbol_price_data):
-        print("Long Order - Candle Body Getter - __get_candle_body_price_low")
+        #TODO logging -> print("Long Order - Candle Body Getter - __get_candle_body_price_low")
         # column 2 is the low because it is open high low close
         return symbol_price_data[lookback:bar_index, 2].min()
 
     def __get_candle_body_price_close(self, lookback, bar_index, symbol_price_data):
-        print("Long Order - Candle Body Getter - __get_candle_body_price_close")
+        #TODO logging -> print("Long Order - Candle Body Getter - __get_candle_body_price_close")
         # column 2 is the low because it is open high low close
         return symbol_price_data[lookback:bar_index, 3].min()
 
@@ -137,7 +137,7 @@ class StopLossLong:
         pass
 
     def calculate_stop_loss(self, bar_index, symbol_price_data):
-        print("Long Order - Calculate Stop Loss - calculate_stop_loss")
+        #TODO logging -> print("Long Order - Calculate Stop Loss - calculate_stop_loss")
         # lb will be bar index if sl isn't based on lookback because look back will be 0
         lookback = max(int((bar_index - 1) - self.sl_based_on_lookback), 0)
         candle_body = self.sl_price_getter(
@@ -153,7 +153,7 @@ class StopLossLong:
 
     # stop loss to break even zero or entry
     def __sl_to_be_zero(self, average_entry):
-        print("Long Order - Check Move Stop Loss to BE - __sl_to_be_zero")
+        #TODO logging -> print("Long Order - Check Move Stop Loss to BE - __sl_to_be_zero")
         return (self.market_fee_pct * average_entry + average_entry) / (
             1 - self.market_fee_pct
         )
@@ -168,7 +168,7 @@ class StopLossLong:
         bar_index,
         symbol_price_data,
     ):
-        print("Long Order - Check Move Stop Loss to BE - check_move_stop_loss_to_be")
+        #TODO logging -> print("Long Order - Check Move Stop Loss to BE - check_move_stop_loss_to_be")
         # Stop Loss to break even
         candle_body_ohlc = self.sl_to_be_price_getter(
             lookback=bar_index,
@@ -178,6 +178,7 @@ class StopLossLong:
         pct_from_ae = (candle_body_ohlc - average_entry) / average_entry
         move_sl = pct_from_ae > self.sl_to_be_move_when_pct
         if move_sl:
+            print('Long Order - check_move_stop_loss_to_be=true')
             self.sl_price = self.sl_to_be_z_or_e(average_entry)
             raise MoveStopLoss(
                 sl_price=self.sl_price, order_status=OrderStatus.MovedStopLossToBE
@@ -189,9 +190,9 @@ class StopLossLong:
         bar_index,
         symbol_price_data,
     ):
-        print(
-            "Long Order - Check Move Trailing Stop Loss - check_move_trailing_stop_loss"
-        )
+        # TODO logging -> print(
+        #     "Long Order - Check Move Trailing Stop Loss - check_move_trailing_stop_loss"
+        # )
         candle_body_ohlc = self.tsl_price_getter(
             lookback=bar_index,
             bar_index=bar_index + 1,
@@ -210,7 +211,7 @@ class StopLossLong:
                 )
 
     def check_stop_loss_hit(self, sl_hit: bool, exit_fee_pct: float):
-        print("Long Order - Check Stop Loss Hit - check_stop_loss_hit")
+        #TODO logging -> print("Long Order - Check Stop Loss Hit - check_stop_loss_hit")
         if sl_hit:
             raise DecreasePosition(
                 exit_price=self.sl_price,
