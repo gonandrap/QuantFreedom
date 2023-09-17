@@ -1,4 +1,3 @@
-.ipynb_checkpoints
 .vscode
 .idea
 .mypy_cache
@@ -12,7 +11,7 @@ numba_cache
 thinking.txt
 .mustache
 strategy/
-full class test_gonzalo.ipynb
+quantfreedom/class_practice/full class test_gonzalo.ipynb
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

@@ -90,7 +90,7 @@ class TakeProfitLong:
         current_candle: np.array,
         **vargs,
     ):
-        print("Long Order - Take Profit Checker - check_take_profit_hit_provided")
+        #TODO logging -> print("Long Order - Take Profit Checker - check_take_profit_hit_provided")
         if exit_signal:
             raise DecreasePosition(
                 exit_price=current_candle[3], # sending the close of the current candle for now as exit price
