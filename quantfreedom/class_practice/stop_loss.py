@@ -161,7 +161,6 @@ class StopLossLong:
         pct_from_ae = (candle_body_ohlc - average_entry) / average_entry
         move_sl = pct_from_ae > self.sl_to_be_move_when_pct
         if move_sl:
-            print('Long Order - check_move_stop_loss_to_be=true')
             self.sl_price = self.sl_to_be_z_or_e(average_entry)
             raise MoveStopLoss(sl_price=self.sl_price, order_status=OrderStatus.MovedStopLossToBE)
 
